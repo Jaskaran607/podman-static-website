@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podman Web Guide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="E:\podman1.png" alt="Podman Logo" class="logo">
+    <h1>🍶 Podman Image & Web Guide</h1>
+    <p>Create and manage HTML/CSS pages inside Podman containers</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#intro">What is Podman?</a></li>
+      <li><a href="#commands">Podman Commands</a></li>
+      <li><a href="#project">Web Project Setup</a></li>
+      <li><a href="#tips">Best Practices</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <section id="intro">
+      <h2>📘 What is Podman?</h2>
+      <p>
+        Podman is a container engine developed by Red Hat. It's a Docker-compatible tool that allows you to manage containers without a central daemon and supports rootless containers.
+      </p>
+    </section>
+
+    <section id="commands">
+      <h2>🔧 Useful Podman Commands</h2>
+      <div class="code-block">
+<pre><code># Check version
+podman --version
+
+# Pull an image
+podman pull nginx
+
+# Run a container
+podman run -d -p 8080:80 nginx
+
+# List containers
+podman ps
+
+# Stop container
+podman stop &lt;container_id&gt;
+
+# Remove container
+podman rm &lt;container_id&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="project">
+      <h2>🌐 HTML/CSS Web Project with Podman</h2>
+      <ol>
+        <li>Create a folder with <code>index.html</code>, <code>style.css</code>, and <code>Dockerfile</code>.</li>
+        <li>Sample Dockerfile:</li>
+      </ol>
+      <div class="code-block">
+<pre><code>FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+COPY style.css /usr/share/nginx/html/style.css</code></pre>
+      </div>
+      <p>Build and run using Podman:</p>
+      <div class="code-block">
+<pre><code>podman build -t podman-html-site .
+podman run -d -p 8080:80 podman-html-site</code></pre>
+      </div>
+    </section>
+
+    <section id="tips">
+      <h2>💡 Tips for Podman Users</h2>
+      <ul>
+        <li>No daemon needed (unlike Docker)</li>
+        <li>Run as rootless user: <code>alias docker=podman</code></li>
+        <li>Compatible with Dockerfiles and Compose (with podman-compose)</li>
+        <li>Use volumes for persistent data: <code>-v ./data:/data</code></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ using HTML & CSS | Podman Powered</p>
+  </footer>
+</body>
+</html>
